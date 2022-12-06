@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-//$CLEARDB_DATABASE_URL=parse_url('CLEARDB_DATABASE_URL');
-
 return [
 
     /*
@@ -46,16 +43,9 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-//        $server = $url["host"];
-//$username = $url["user"];
-//$password = $url["pass"];
-//$db = substr($url["path"], 1);
-//
-//$conn = new mysqli($server, $username, $password, $db);
-
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('$url'),
+            'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
@@ -126,7 +116,8 @@ return [
     | Redis is an open source, fast, and advanced key-value store that also
     | provides a richer body of commands than a typical key-value system
     | such as APC or Memcached. Laravel makes it easy to dig right in.
-    |
+    | mysql://root:xwkMUyPhVXFOOFRB3yGB@containers-us-west-145.railway.app:6132/railway
+    mysql -hcontainers-us-west-145.railway.app -uroot -pxwkMUyPhVXFOOFRB3yGB --port 6132 --protocol=TCP railway
     */
 
     'redis' => [
